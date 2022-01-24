@@ -1,12 +1,16 @@
-import express from 'express'
+import { Router } from 'express'
 
-import { ExpressAdapter } from '@/controllers/adapters/ExpressAdapter'
-import { createUserController } from './useCases/CreateUser'
+import { ExpressAdapter } from '@/common/adapters/ExpressAdapter'
+import { createUserController } from '@/user/features/CreateUser'
+import { listUsersController } from '@/user/features/ListUsers'
+import { getUserController } from '@/user/features/GetUsers'
+import { updateUserController } from '@/user/features/UpdateUser'
 
-const app = express()
+const routes = Router()
 
-app.use(express.json())
+routes.post('/api/user', ExpressAdapter.post(createUserController))
+routes.get('/api/user', ExpressAdapter.get(listUsersController))
+routes.get('/api/user/:id', ExpressAdapter.get(getUserController))
+routes.put('/api/user/:id', ExpressAdapter.update(updateUserController))
 
-app.post('/api/user', ExpressAdapter.post(createUserController.handle))
-
-export { app as server }
+export { routes }
