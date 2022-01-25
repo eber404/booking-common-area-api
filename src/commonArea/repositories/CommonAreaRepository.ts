@@ -1,4 +1,4 @@
-import { CommonArea } from '@/entities/CommonArea'
+import { CommonArea } from '@/commonArea/entities/CommonArea'
 
 export interface CommonAreaRepository {
   create(area: CommonArea): Promise<void>

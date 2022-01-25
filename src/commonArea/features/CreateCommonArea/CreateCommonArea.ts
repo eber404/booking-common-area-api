@@ -1,6 +1,7 @@
-import { CommonArea } from '@/entities/CommonArea'
-import { CommonAreaStatus } from '@/entities/CommonAreaStatus'
-import { CommonAreaRepository } from '@/repositories/CommonAreaRepository'
+import { CommonArea } from '@/commonArea/entities/CommonArea'
+import { CommonAreaStatus } from '@/commonArea/entities/CommonAreaStatus'
+import { CommonAreaRepository } from '@/commonArea/repositories/CommonAreaRepository'
+
 import { CreateCommonAreaInput } from './CreateCommonAreaInput'
 
 export class CreateCommonArea {

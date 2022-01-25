@@ -1,4 +1,4 @@
-import { CommonAreaRepository } from '@/repositories/CommonAreaRepository'
+import { CommonAreaRepository } from '@/commonArea/repositories/CommonAreaRepository'
 
 import { ListCommonAreasOutput } from './ListCommonAreasOutput'
 
