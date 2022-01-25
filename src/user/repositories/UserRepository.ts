@@ -8,7 +8,7 @@ export interface GetUserRepository {
   get(id: string): Promise<User>
 }
 
-export interface ListUserRepository {
+export interface ListUsersRepository {
   list(): Promise<User[]>
 }
 
