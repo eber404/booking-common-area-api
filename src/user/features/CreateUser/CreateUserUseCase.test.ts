@@ -1,5 +1,9 @@
-import { CreateUserRepository } from '@/user/repositories/UserRepository'
+import {
+  CreateUserRepository,
+  ListUsersRepository,
+} from '@/user/repositories/UserRepository'
 import { User } from '@/user/entities/User'
+import { usersMock } from '@/user/mocks/usersMock'
 
 import { CreateUserUseCase } from './CreateUserUseCase'
 
@@ -9,9 +13,16 @@ class CreateUserRepositoryStub implements CreateUserRepository {
   }
 }
 
+class ListUsersRepositoryStub implements ListUsersRepository {
+  async list(): Promise<User[]> {
+    return await Promise.resolve(usersMock)
+  }
+}
+
 const sutFactory = () => {
   const createUserRepository = new CreateUserRepositoryStub()
-  const sut = new CreateUserUseCase(createUserRepository)
+  const listUsersRepository = new ListUsersRepositoryStub()
+  const sut = new CreateUserUseCase(createUserRepository, listUsersRepository)
 
   jest.spyOn(createUserRepository, 'create')
   jest.spyOn(sut, 'execute')
@@ -26,8 +37,8 @@ describe('create user use case', () => {
   it('should call methods execute and create', async () => {
     // given
     const inputMock = {
-      apartment: 1001,
-      name: 'fulano',
+      apartment: 1004,
+      name: 'james',
       role: 'resident',
     }
     const { sut, createUserRepository } = sutFactory()
