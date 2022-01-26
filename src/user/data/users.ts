@@ -1,3 +1,3 @@
-import { User } from '@/user/entities/User'
+import { UserDTO } from '@/user/dtos/UserDTO'
 
-export const users: User[] = []
+export const users: UserDTO[] = []

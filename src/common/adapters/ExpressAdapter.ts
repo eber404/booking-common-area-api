@@ -1,13 +1,18 @@
-import * as HttpSuccess from '@/common/http/HttpSuccess'
-import * as HttpError from '@/common/http/HttpError'
-
 import { Request, Response } from 'express'
 
+import * as HttpSuccess from '@/common/http/HttpSuccess'
+import * as HttpError from '@/common/http/HttpError'
+import { Controller } from '@/common/interfaces/Controller'
+
 export class ExpressAdapter {
-  static post(controller) {
+  static post(controller: Controller) {
     return async function (req: Request, res: Response) {
       try {
-        await controller.handle(req.body)
+        await controller.handle({
+          body: req.body,
+          params: req.params,
+          query: req.query,
+        })
 
         const { message, status } = HttpSuccess.Created()
         return res.status(status).send(message)
@@ -23,10 +28,14 @@ export class ExpressAdapter {
     }
   }
 
-  static get(controller) {
+  static get(controller: Controller) {
     return async function (req: Request, res: Response) {
       try {
-        const output = await controller.handle(req.params, req.query)
+        const output = await controller.handle({
+          body: req.body,
+          params: req.params,
+          query: req.query,
+        })
 
         const { status } = HttpSuccess.Ok()
         return res.status(status).json(output)
@@ -41,10 +50,14 @@ export class ExpressAdapter {
     }
   }
 
-  static update(controller) {
+  static update(controller: Controller) {
     return async function (req: Request, res: Response) {
       try {
-        await controller.handle(req.params, req.body)
+        await controller.handle({
+          body: req.body,
+          params: req.params,
+          query: req.query,
+        })
 
         const { status, message } = HttpSuccess.Ok()
         return res.status(status).json(message)

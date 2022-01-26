@@ -1,19 +1,19 @@
-import { User } from '@/user/entities/User'
+import { UserDTO } from '@/user/dtos/UserDTO'
 
 export interface CreateUserRepository {
-  create(user: User): Promise<void>
+  create(user: UserDTO): Promise<void>
 }
 
 export interface GetUserRepository {
-  get(id: string): Promise<User>
+  get(id: string): Promise<UserDTO>
 }
 
 export interface ListUsersRepository {
-  list(): Promise<User[]>
+  list(): Promise<UserDTO[]>
 }
 
 export interface UpdateUserRepository {
-  update(id: string, user: User): Promise<void>
+  update(user: UserDTO): Promise<void>
 }
 
 export interface DeleteUserRepository {

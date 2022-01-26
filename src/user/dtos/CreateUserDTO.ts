@@ -1,6 +1,5 @@
-export interface UpdateUserDTO {
+export interface CreateUserDTO {
   name: string
   apartment: number
   role: string
-  id: string
 }

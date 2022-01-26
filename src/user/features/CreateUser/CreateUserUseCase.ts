@@ -4,7 +4,7 @@ import { UserRole } from '@/user/entities/UserRole'
 import { ListUsersRepositoryLocal } from '@/user/repositories/implementations/ListUsersRepositoryLocal'
 import { CreateUserRepository } from '@/user/repositories/UserRepository'
 
-import { CreateUserInput } from './CreateUserInput'
+import { CreateUserDTO } from '@/user/dtos/CreateUserDTO'
 
 export class CreateUserUseCase {
   constructor(
@@ -12,7 +12,7 @@ export class CreateUserUseCase {
     private readonly listUsersRepository: ListUsersRepositoryLocal
   ) {}
 
-  async execute(input: CreateUserInput): Promise<void> {
+  async execute(input: CreateUserDTO): Promise<void> {
     const { apartment, name, role } = input
 
     const userAlreadyExists = (await this.listUsersRepository.list()).some(

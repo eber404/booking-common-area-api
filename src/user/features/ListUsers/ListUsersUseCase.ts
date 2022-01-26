@@ -1,6 +1,5 @@
 import { ListUsersRepository } from '@/user/repositories/UserRepository'
-
-import { ListUsersDTO } from './ListUsersDTO'
+import { ListUsersDTO } from '@/user/dtos/ListUsersDTO'
 
 export class ListUsersUseCase {
   constructor(private readonly listUsersRepository: ListUsersRepository) {}

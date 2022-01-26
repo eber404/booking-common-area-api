@@ -1,7 +1,13 @@
 import { CommonArea } from '@/commonArea/entities/CommonArea'
 
-export interface CommonAreaRepository {
+export interface CreateCommonAreaRepository {
   create(area: CommonArea): Promise<void>
-  get(id: string): Promise<CommonArea>
+}
+
+export interface ListCommonAreasRepository {
   list(): Promise<CommonArea[]>
+}
+
+export interface GetCommonAreaRepository {
+  get(id: string): Promise<CommonArea>
 }

@@ -1,9 +1,9 @@
-import { User } from '@/user/entities/User'
 import { users } from '@/user/data/users'
+import { UserDTO } from '@/user/dtos/UserDTO'
 import { ListUsersRepository } from '@/user/repositories/UserRepository'
 
 export class ListUsersRepositoryLocal implements ListUsersRepository {
-  async list(): Promise<User[]> {
+  async list(): Promise<UserDTO[]> {
     return users
   }
 }

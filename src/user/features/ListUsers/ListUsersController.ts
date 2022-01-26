@@ -1,5 +1,6 @@
 import { NotFound } from '@/common/http/HttpError'
-import { ListUsersDTO } from './ListUsersDTO'
+import { ListUsersDTO } from '@/user/dtos/ListUsersDTO'
+
 import { ListUsersUseCase } from './ListUsersUseCase'
 
 export class ListUsersController {

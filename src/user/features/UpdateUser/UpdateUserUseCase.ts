@@ -1,11 +1,11 @@
+import { UpdateUserDTO } from '@/user/dtos/UpdateUserDTO'
 import { BadRequest } from '@/common/http/HttpError'
 import { UserRole } from '@/user/entities/UserRole'
 import {
   UpdateUserRepository,
   GetUserRepository,
 } from '@/user/repositories/UserRepository'
-
-import { UpdateUserDTO } from './UpdateUserDTO'
+import { validateEnumValue } from '@/common/utils/validateEnumValue'
 
 export class UpdateUserUseCase {
   constructor(
@@ -18,25 +18,20 @@ export class UpdateUserUseCase {
 
     const retriviedUser = await this.getUserRepository.get(id)
 
-    if (!retriviedUser) throw BadRequest('Usuário não encontrado.')
+    if (!retriviedUser) throw BadRequest('User not found.')
 
     if (userInput.role) {
-      const availableRoles = Object.values(UserRole)
+      const isRoleValid = validateEnumValue(userInput.role, UserRole)
 
-      const isRoleValid = availableRoles.some(
-        (retriviedRole) =>
-          retriviedRole.toString().toUpperCase() ===
-          userInput.role.toString().toUpperCase()
-      )
-
-      if (!isRoleValid) throw BadRequest('Role inválida.')
+      if (!isRoleValid) throw BadRequest('Invalid user role.')
     }
 
     const role = UserRole[userInput.role.toUpperCase()]
 
-    await this.updateUserRepository.update(id, {
+    await this.updateUserRepository.update({
       ...retriviedUser,
       ...userInput,
+      id,
       role,
     })
   }

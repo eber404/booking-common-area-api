@@ -1,8 +1,8 @@
 import ModuleAlias from 'module-alias'
 
 ModuleAlias.addAliases({
+  '@/booking': __dirname + '/booking',
   '@/common': __dirname + '/common',
   '@/commonArea': __dirname + '/commonArea',
-  '@/location': __dirname + '/location',
   '@/user': __dirname + '/user',
 })

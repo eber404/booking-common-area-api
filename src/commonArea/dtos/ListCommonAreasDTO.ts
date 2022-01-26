@@ -1,5 +1,5 @@
 import { CommonArea } from '@/commonArea/entities/CommonArea'
 
-export interface ListCommonAreasOutput {
+export interface ListCommonAreasDTO {
   data: CommonArea[]
 }

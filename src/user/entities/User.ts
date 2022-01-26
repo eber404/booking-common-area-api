@@ -1,5 +1,3 @@
-import crypto from 'crypto'
-
 import { UserRole } from './UserRole'
 
 export class User {
@@ -8,11 +6,7 @@ export class User {
   public readonly apartment: number
   public readonly role: UserRole
 
-  constructor(props: Omit<User, 'id'>) {
+  constructor(props: User) {
     Object.assign(this, props)
-
-    if (!this.id) {
-      this.id = crypto.randomUUID()
-    }
   }
 }
