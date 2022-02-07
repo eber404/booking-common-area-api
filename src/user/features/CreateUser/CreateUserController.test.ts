@@ -29,7 +29,7 @@ describe('create user controller', () => {
     const { sut, createUserUseCaseMock } = sutFactory()
 
     // when
-    await sut.handle(inputMock)
+    await sut.handle({ body: inputMock })
 
     // then
     expect(sut.handle).toBeCalledWith(inputMock)
@@ -46,7 +46,7 @@ describe('create user controller', () => {
     const { sut, createUserUseCaseMock } = sutFactory()
 
     // when
-    await sut.handle(inputMock)
+    await sut.handle({ body: inputMock })
     jest.spyOn(createUserUseCaseMock, 'execute').mockImplementation(() => {
       throw Error('salve')
     })
