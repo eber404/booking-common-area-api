@@ -6,6 +6,9 @@ export class ListBookingsController {
   constructor(private readonly listBookingsUseCase: ListBookingsUseCase) {}
 
   async handle(): Promise<ListBookingsDTO> {
-    return await this.listBookingsUseCase.execute()
+    const bookings = await this.listBookingsUseCase.execute()
+    return {
+      data: bookings,
+    }
   }
 }
